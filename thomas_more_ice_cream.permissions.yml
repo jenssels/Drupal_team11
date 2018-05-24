@@ -1,4 +1,6 @@
+configure ice cream settings:
+  title: 'configure ice cream settings'
 register order:
-  title: 'Enkel authenticated users kunnen bestellen'
-view social media charts:
-  title: 'View order charts'
+  title: 'register order'
+view ice cream charts:
+  title: 'View ice cream charts'

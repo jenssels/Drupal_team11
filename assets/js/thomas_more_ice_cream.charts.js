@@ -4,7 +4,6 @@
     google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {
-      console.log(drupalSettings.chart_smaken);
       var data = google.visualization.arrayToDataTable(drupalSettings.chart_smaken
       );
 
@@ -14,6 +13,18 @@
       };
 
       var chart = new google.visualization.PieChart(document.getElementById('ijs'));
+
+      chart.draw(data, options);
+
+      var data = google.visualization.arrayToDataTable(drupalSettings.chart_toppings
+      );
+
+      var options = {
+        title: 'Toppings ijsje',
+        is3D: true
+      };
+
+      var chart = new google.visualization.PieChart(document.getElementById('wafel'));
 
       chart.draw(data, options);
     }

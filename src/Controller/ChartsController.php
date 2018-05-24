@@ -26,6 +26,12 @@ class ChartsController extends ControllerBase {
   }
 
   public function buildCharts(){
+    $toppings = $this->databaseManager->getAllToppings();
+    $toppingData[] = ['Wafel Toppings', 'Aantal'];
+    foreach($toppings as $topping){
+      $toppingData[] = [$topping, $this->databaseManager->getCountTopping($topping)];
+    }
+
     $smaken = $this->databaseManager->getAllSmaken();
     $smaakData[] = ['Ice cream smaken', 'Aantal'];
     foreach($smaken as $smaak){
@@ -45,11 +51,11 @@ class ChartsController extends ControllerBase {
     ];
 
     $chart['toppings'] = [
-      '#markup' => new FormattableMarkup('<div id="toppings" style="width: 900px; height: 500px;">Topping chart.</div>', []),
+      '#markup' => new FormattableMarkup('<div id="wafel" style="width: 900px; height: 500px;">Topping chart.</div>', []),
       '#attached' => [
         'library' => ['thomas_more_ice_cream/data_charts'],
         'drupalSettings' => [
-          'chart_toppings' => [],
+          'chart_toppings' => $toppingData,
 
         ],
       ],

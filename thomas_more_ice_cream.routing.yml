@@ -10,7 +10,7 @@ thomas_more_ice_cream.admin.options:
   defaults:
     _form: 'Drupal\thomas_more_ice_cream\Form\OptionSettingsForm'
   requirements:
-    _permission: 'access administration pages'
+    _permission: 'configure ice cream settings'
 
 thomas_more_ice_cream.user.register_order:
   path: '/user/ice-cream/register-order'
@@ -19,7 +19,7 @@ thomas_more_ice_cream.user.register_order:
   requirements:
     _permission: 'register order'
 
-thomas_more_ice_cream.charts:
+thomas_more_ice_cream.admin.charts:
   path: 'admin/thomas-more-ice-cream/charts'
   defaults:
     _controller: 'Drupal\thomas_more_ice_cream\Controller\ChartsController::buildCharts'
