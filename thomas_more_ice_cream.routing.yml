@@ -8,6 +8,6 @@ thomas_more_ice_cream.admin.settings:
 thomas_more_ice_cream.user.register_order:
   path: '/user/ice-cream/register-order'
   defaults:
-    _form: 'Drupal\thomas_more_ice_cream\Form\SettingsForm'
+    _form: 'Drupal\thomas_more_ice_cream\Form\IceCreamForm'
   requirements:
     _permission: 'register order'
