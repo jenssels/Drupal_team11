@@ -77,8 +77,9 @@ class OptionSettingsForm extends FormBase {
   }
 
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $smakenString = str_replace(' ', '', strtolower($form_state->getValue('smaken')));
-    $toppingsString = str_replace(' ', '', strtolower($form_state->getValue('toppings')));
+
+    $smakenString = preg_replace('/\s+/', '', strtolower($form_state->getValue('smaken')));
+    $toppingsString = preg_replace('/\s+/', '', strtolower($form_state->getValue('toppings')));
 
     $smakenNieuw = explode(',', $smakenString);
     $toppingsNieuw = explode(',', $toppingsString);
@@ -87,23 +88,26 @@ class OptionSettingsForm extends FormBase {
     $toppingsOud = $this->databaseManager->getAllToppings();
     if($smakenOud != null){
       foreach($smakenOud as $smaak){
-        $smaak = strtolower($smaak);
+        $this->databaseManager->deleteSmaak($smaak);
       }
     }
     if($toppingsOud != null){
       foreach($toppingsOud as $topping){
-        $topping = strtolower($topping);
+        $this->databaseManager->deleteTopping($topping);
       }
     }
 
+    if($smakenNieuw != null){
+      foreach($smakenNieuw as $smaak){
+        $smaak = ucfirst($smaak);
+        $this->databaseManager->addSmaak($smaak);
+      }
+    }
     if($toppingsNieuw != null){
-      foreach($toppingsNieuw as $topping){
-        if(in_array($topping, $toppingsOud)){
-          unset($toppingsOud[$topping]);
-          unset($toppingsNieuw[$topping]);
-        }
+      foreach ($toppingsNieuw as $topping){
+        $topping = ucfirst($topping);
+        $this->databaseManager->addTopping($topping);
       }
     }
   }
-
 }
