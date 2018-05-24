@@ -29,7 +29,7 @@ class SettingsForm extends FormBase {
     $form['ijsjes_threshold'] = [
       '#type' => 'number',
       '#title' => 'Threshold voor de ijsjes.',
-      '€default_value' => $this->state->get('thomas_more_ice_cream.ijsjes_threshold')
+      '#default_value' => $this->state->get('thomas_more_ice_cream.ijsjes_threshold')
     ];
 
     $form['wafels_threshold'] = [
@@ -48,6 +48,8 @@ class SettingsForm extends FormBase {
   }
 
   public function submitForm(array &$form, FormStateInterface $form_state) {
-
+    $this->state->set('thomas_more_ice_cream.ijsjes_threshold', $form_state->getValue('ijsjes_threshold'));
+    $this->state->set('thomas_more_ice_cream.wafels_threshold', $form_state->getValue('wafels_threshold'));
+    drupal_set_message('De threshold waardes zijn succesvol opgeslagen');
   }
 }
