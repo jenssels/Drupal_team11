@@ -1,0 +1,7 @@
+data_charts:
+  version: VERSION
+  js:
+    https://www.gstatic.com/charts/loader.js: { type: external }
+    assets/js/thomas_more_ice_cream.charts.js: {}
+  dependencies:
+    - core/drupalSettings
