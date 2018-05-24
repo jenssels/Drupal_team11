@@ -54,7 +54,7 @@ class IceCreamForm extends FormBase {
 
     $form['submit'] = [
       '#type' => 'submit',
-      '#value' => 'Reset',
+      '#value' => 'Submit',
       '#button_type' => 'primary',
     ];
     return $form;
@@ -62,8 +62,8 @@ class IceCreamForm extends FormBase {
   }
 
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $this->DatabaseManager->addSmaak($form_state->get('smaak'));
-    $this->DatabaseManager->addTopping($form_state->get('topping'));
+    $this->databaseManager->addSmaak($form_state->get('smaak'));
+    $this->databaseManager->addTopping($form_state->get('topping'));
 
     drupal_set_message('Test');
   }
