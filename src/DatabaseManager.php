@@ -60,8 +60,10 @@ class DatabaseManager {
     return (int) $this->database->select('thomas_more_ice_cream_smaakKeuze')->condition('smaak', $smaak)->countQuery()->execute()->fetchfield();
   }
 
-  public function addToppingKeuze($topping){
-    $this->database->insert('thomas_more_ice_cream_toppingKeuze')->fields(['topping' => $topping, 'time_clicked' => $this->datetime->getRequestTime()])->execute();
+  public function addToppingKeuze($toppings){
+    foreach($toppings as $topping){
+      $this->database->insert('thomas_more_ice_cream_toppingKeuze')->fields(['topping' => $topping, 'time_clicked' => $this->datetime->getRequestTime()])->execute();
+    }
     $wafelTeller = $this->state->get('thomas_more_ice_cream.wafelTeller');
     $wafelThreshold = $this->state->get('thomas_more_ice_cream.wafels_threshold');
     $wafelTeller++;
