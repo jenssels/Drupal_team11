@@ -15,26 +15,32 @@ use Drupal\thomas_more_ice_cream\DatabaseManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class ChartsController extends ControllerBase {
+
   protected $databaseManager;
+
   public function __construct(DataBaseManager $databaseManager) {
     $this->databaseManager = $databaseManager;
   }
+
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('thomas_more_ice_cream.database_manager')
     );
   }
 
-  public function buildCharts(){
+  public function buildCharts() {
     $toppings = $this->databaseManager->getAllToppings();
     $toppingData[] = ['Wafel Toppings', 'Aantal'];
-    foreach($toppings as $topping){
-      $toppingData[] = [$topping, $this->databaseManager->getCountTopping($topping)];
+    foreach ($toppings as $topping) {
+      $toppingData[] = [
+        $topping,
+        $this->databaseManager->getCountTopping($topping),
+      ];
     }
 
     $smaken = $this->databaseManager->getAllSmaken();
     $smaakData[] = ['Ice cream smaken', 'Aantal'];
-    foreach($smaken as $smaak){
+    foreach ($smaken as $smaak) {
       $smaakData[] = [$smaak, $this->databaseManager->getCountSmaak($smaak)];
     }
 
