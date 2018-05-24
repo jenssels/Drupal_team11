@@ -42,7 +42,11 @@ class DatabaseManager {
   }
 
   public function addSmaak($smaak){
-    $this->database->insert('thomas_more_ice_cream_smaak')->fields(['smaak' => $smaak])->execute();
+    if ($smaak != null || $smaak != 0) {
+      $this->database->insert('thomas_more_ice_cream_smaak')
+        ->fields(['smaak' => $smaak])
+        ->execute();
+    }
   }
 
   public  function deleteSmaak($smaak){
@@ -62,7 +66,9 @@ class DatabaseManager {
 
   public function addToppingKeuze($toppings){
     foreach($toppings as $topping){
-      $this->database->insert('thomas_more_ice_cream_toppingKeuze')->fields(['topping' => $topping, 'time_clicked' => $this->datetime->getRequestTime()])->execute();
+      if($topping != 0){
+        $this->database->insert('thomas_more_ice_cream_toppingKeuze')->fields(['topping' => $topping, 'time_clicked' => $this->datetime->getRequestTime()])->execute();
+      }
     }
     $wafelTeller = $this->state->get('thomas_more_ice_cream.wafelTeller');
     $wafelThreshold = $this->state->get('thomas_more_ice_cream.wafels_threshold');

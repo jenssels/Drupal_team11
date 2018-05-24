@@ -64,11 +64,23 @@ class IceCreamForm extends FormBase {
 
   public function submitForm(array &$form, FormStateInterface $form_state) {
     if ($form_state->getValue('choice')=='icecream'){
-      $this->databaseManager->addSmaakKeuze($form_state->getValue('smaak'));
+      $checksmaak = $this->databaseManager->addSmaakKeuze($form_state->getValue('smaak'));
+      if ($checksmaak==True){
+        drupal_set_message('Threshold Ice Cream reached!');
+      }
+      else{
+        drupal_set_message('Threshold Ice Cream not yet reached!');
+      }
     };
 
     if ($form_state->getValue('choice')=='waffle'){
-      $this->databaseManager->addToppingKeuze($form_state->getValue('topping'));
+      $checktopping = $this->databaseManager->addToppingKeuze($form_state->getValue('topping'));
+      if ($checktopping==True){
+        drupal_set_message('Threshold Waffles reached!');
+      }
+      else{
+        drupal_set_message('Threshold Waffles not yet reached!');
+      }
     };
 
     drupal_set_message('Smaak of Topping doorgegeven');
