@@ -49,7 +49,7 @@ class DatabaseManager {
   }
 
   public function addSmaak($smaak) {
-    if ($smaak != NULL || $smaak != 0) {
+    if ($smaak != 0) {
       $this->database->insert('thomas_more_ice_cream_smaak')
         ->fields(['smaak' => $smaak])
         ->execute();

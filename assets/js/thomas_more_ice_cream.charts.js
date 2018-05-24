@@ -20,7 +20,7 @@
       );
 
       var options = {
-        title: 'Toppings ijsje',
+        title: 'Toppings wafel',
         is3D: true
       };
 

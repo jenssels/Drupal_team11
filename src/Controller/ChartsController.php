@@ -30,6 +30,7 @@ class ChartsController extends ControllerBase {
 
   public function buildCharts() {
     $toppings = $this->databaseManager->getAllToppings();
+    var_dump($toppings);
     $toppingData[] = ['Wafel Toppings', 'Aantal'];
     foreach ($toppings as $topping) {
       $toppingData[] = [
