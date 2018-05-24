@@ -33,8 +33,8 @@ class DatabaseManager {
     );
   }
 
-  public function addSmaak($smaak){
-    $this->database->insert('thomas_more_ice_cream_smaak')->fields(['smaak' => $smaak, 'time_clicked' => $this->datetime->getRequestTime()])->execute();
+  public function addSmaakKeuze($smaak){
+    $this->database->insert('thomas_more_ice_cream_smaakKeuze')->fields(['smaak' => $smaak, 'time_clicked' => $this->datetime->getRequestTime()])->execute();
     $ijsTeller = $this->state->get('thomas_more_ice_cream.ijsTeller');
     $ijsThreshold = $this->state->get('thomas_more_ice_cream.ijsjes_threshold');
     $ijsTeller++;
@@ -46,11 +46,22 @@ class DatabaseManager {
       $this->state->set('thomas_more_ice_cream.ijsTeller', $ijsTeller);
       return false;
     }
-
   }
 
-  public function addTopping($topping){
-    $this->database->insert('thomas_more_ice_cream_toppings')->fields(['topping' => $topping, 'time_clicked' => $this->datetime->getRequestTime()])->execute();
+  public function addSmaak($smaak){
+    $this->database->insert('thomas_more_ice_cream_smaak')->fields(['smaak' => $smaak])->execute();
+  }
+
+  public function getAllSmaken(){
+    return $this->database->select('thomas_more_ice_cream_smaak')->execute();
+  }
+
+  public function getCountSmaak($smaak){
+    return (int) $this->database->select('thomas_more_ice_cream_smaakKeuze')->condition('smaak', $smaak)->countQuery()->execute()->fetchfield();
+  }
+
+  public function addToppingKeuze($topping){
+    $this->database->insert('thomas_more_ice_cream_toppingKeuze')->fields(['topping' => $topping, 'time_clicked' => $this->datetime->getRequestTime()])->execute();
     $wafelTeller = $this->state->get('thomas_more_ice_cream.wafelTeller');
     $wafelThreshold = $this->state->get('thomas_more_ice_cream.wafels_threshold');
     $wafelTeller++;
@@ -64,6 +75,20 @@ class DatabaseManager {
     }
 
   }
+
+  public function addTopping($topping){
+    $this->database->insert('thomas_more_ice_cream_topping')->fields(['topping' => $topping])->execute();
+  }
+
+  public function getAllToppings(){
+    return $this->database->select('thomas_more_ice_cream_topping')->execute();
+  }
+
+  public function getToppingKeuze($topping){
+    return (int) $this->database->select('thomas_more_ice_cream_toppingKeuze')->condition('topping', $topping)->countQuery()->execute()->fetchfield();
+  }
+
+
 
   public function resetIjsTeller(){
     $ijsTeller = 0;
