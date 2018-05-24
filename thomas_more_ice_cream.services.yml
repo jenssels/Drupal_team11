@@ -1,0 +1,4 @@
+services:
+  thomas_more_ice_cream.database_manager:
+    class: Drupal\thomas_more_ice_cream\DatabaseManager
+    arguments: ['@database', '@datetime.time']
