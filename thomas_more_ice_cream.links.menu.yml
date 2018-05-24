@@ -9,3 +9,9 @@ thomas_more_ice_cream.admin.settings:
   parent: system.admin_config_ui
   description: 'Configure ice cream tastes & waffle toppings.'
   route_name: thomas_more_ice_cream.admin.settings
+
+thomas_more_ice_cream.admin.charts:
+  title: 'Ice cream tastes & waffle toppings charts'
+  parent: system.admin_config_ui
+  description: 'Charts of ordered ice cream tastes & waffle toppings.'
+  route_name: thomas_more_ice_cream.admin.charts
