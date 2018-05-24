@@ -1,5 +1,7 @@
 <?php
+
 namespace Drupal\thomas_more_ice_cream\Form;
+
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\State\StateInterface;
@@ -7,10 +9,13 @@ use Drupal\thomas_more_ice_cream\DatabaseManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class IceCreamForm extends FormBase {
+
   protected $databaseManager;
+
   public function __construct(DatabaseManager $databaseManager) {
     $this->databaseManager = $databaseManager;
   }
+
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('thomas_more_ice_cream.database_manager')
@@ -22,35 +27,35 @@ class IceCreamForm extends FormBase {
   }
 
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $form['choice'] = array(
+    $form['choice'] = [
       '#type' => 'radios',
       '#title' => 'Select Ice Cream or Waffle',
-      '#options' => array(
+      '#options' => [
         'icecream' => 'Ice Cream',
         'waffle' => 'Waffle',
-      )
-    );
+      ],
+    ];
 
     $smaakdata = [];
-    foreach($this->databaseManager->getAllSmaken() as $smaak){
+    foreach ($this->databaseManager->getAllSmaken() as $smaak) {
       $smaakdata[$smaak] = $smaak;
-        }
+    }
 
-    $form['smaak'] = array(
+    $form['smaak'] = [
       '#type' => 'radios',
       '#title' => 'Select flavor',
-      '#options' => $smaakdata
-    );
+      '#options' => $smaakdata,
+    ];
 
     $toppingdata = [];
-    foreach($this->databaseManager->getAllToppings() as $topping){
+    foreach ($this->databaseManager->getAllToppings() as $topping) {
       $toppingdata[$topping] = $topping;
     }
 
     $form['topping'] = [
       '#type' => 'checkboxes',
       '#title' => 'Select toppings',
-      '#options' => $toppingdata
+      '#options' => $toppingdata,
     ];
 
     $form['submit'] = [
@@ -63,22 +68,22 @@ class IceCreamForm extends FormBase {
   }
 
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    if ($form_state->getValue('choice')=='icecream'){
+    if ($form_state->getValue('choice') == 'icecream') {
       $checksmaak = $this->databaseManager->addSmaakKeuze($form_state->getValue('smaak'));
-      if ($checksmaak==True){
+      if ($checksmaak == TRUE) {
         drupal_set_message('Threshold Ice Cream reached!');
       }
-      else{
+      else {
         drupal_set_message('Threshold Ice Cream not yet reached!');
       }
     };
 
-    if ($form_state->getValue('choice')=='waffle'){
+    if ($form_state->getValue('choice') == 'waffle') {
       $checktopping = $this->databaseManager->addToppingKeuze($form_state->getValue('topping'));
-      if ($checktopping==True){
+      if ($checktopping == TRUE) {
         drupal_set_message('Threshold Waffles reached!');
       }
-      else{
+      else {
         drupal_set_message('Threshold Waffles not yet reached!');
       }
     };
