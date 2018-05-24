@@ -1,0 +1,60 @@
+<?php
+
+
+function thomas_more_ice_cream_schema(){
+  $schema['thomas_more_ice_cream_smaak'] = [
+    'fields' => [
+      'id' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+      ],
+      'smaak' => [
+        'type' => 'varchar',
+        'length' => '32',
+        'not null' => TRUE,
+        'default' => '',
+      ],
+      'time_clicked' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => '0'
+      ],
+    ],
+    'primary key' => [
+      'id',
+    ],
+  ];
+
+  $schema['thomas_more_ice_cream_toppings'] = [
+    'fields' => [
+      'id' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+      ],
+      'topping' => [
+        'type' => 'varchar',
+        'length' => '32',
+        'not null' => TRUE,
+        'default' => '',
+      ],
+      'time_clicked' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => '0'
+      ],
+    ],
+    'primary key' => [
+      'id',
+    ],
+  ];
+
+  return $schema;
+}
+
+function thomas_more_ice_cream_update_8003() {
+  $table = thomas_more_ice_cream_schema();
+  \Drupal::database()->schema()->createTable('thomas_more_ice_cream_smaak', $table['thomas_more_ice_cream_smaak']);
+  \Drupal::database()->schema()->createTable('thomas_more_ice_cream_toppings', $table['thomas_more_ice_cream_toppings']);
+}
