@@ -7,10 +7,10 @@ function thomas_more_ice_cream_theme() {
   return [
     'ice-cream' => [
       'variables' => [
-        'ice_cream_tastes' => [],
-        'waffle_toppings' => [],
-        'ice_cream_count' => 0,
-        'waffle_count' => 0,
+//        'ice_cream_tastes' => [],
+//        'waffle_toppings' => [],
+//        'ice_cream_count' => 0,
+//        'waffle_count' => 0,
       ],
     ],
   ];
