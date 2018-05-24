@@ -1,2 +1,4 @@
 register order:
   title: 'Enkel authenticated users kunnen bestellen'
+view social media charts:
+  title: 'View order charts'

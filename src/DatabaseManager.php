@@ -25,6 +25,13 @@ class DatabaseManager {
     $this->datetime = $datetime;
     $this->state = $state;
   }
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('database'),
+      $container->get('state'),
+      $container->get('datetime.time')
+    );
+  }
 
   public function addSmaakKeuze($smaak){
     $this->database->insert('thomas_more_ice_cream_smaakKeuze')->fields(['smaak' => $smaak, 'time_clicked' => $this->datetime->getRequestTime()])->execute();

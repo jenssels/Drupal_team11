@@ -13,7 +13,7 @@ class IceCreamForm extends FormBase {
   }
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('thomas_more_ice_cream.click_manager')
+      $container->get('thomas_more_ice_cream.database_manager')
     );
   }
 
@@ -62,7 +62,8 @@ class IceCreamForm extends FormBase {
   }
 
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $this->state->set('thomas_more_ice_cream.smaak', $form_state->getValue('ijsjes_threshold'));
+    $this->DatabaseManager->addSmaak($form_state->get('smaak'));
+    $this->DatabaseManager->addTopping($form_state->get('topping'));
 
     drupal_set_message('Test');
   }
