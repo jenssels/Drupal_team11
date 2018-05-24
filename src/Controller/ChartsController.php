@@ -21,39 +21,41 @@ class ChartsController extends ControllerBase {
   }
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('thomas_more_social_media.database_manager')
+      $container->get('thomas_more_ice_cream.database_manager')
     );
   }
 
   public function buildCharts(){
     $smaken = $this->databaseManager->getAllSmaken();
-    $smaakData = '';
+    $smaakData[] = ['Ice cream smaken', 'Aantal'];
     foreach($smaken as $smaak){
-      $smaakData .= "['" . $smaak['smaak'] . "' => " . $this->databaseManager->getCountSmaak($smaak['smaak']) . "]";
+      $smaakData[] = [$smaak, $this->databaseManager->getCountSmaak($smaak)];
     }
 
     $chart['smaken'] = [
-      '#markup' => new FormattableMarkup('<div id="chart" style="width: 900px; height: 500px;">Smaak chart.</div>', []),
+      '#markup' => new FormattableMarkup('<div id="ijs" style="width: 900px; height: 500px;">Smaak chart.</div>', []),
       '#attached' => [
-        'library' => ['thomas_more_social_media/ice_cream'],
+        'library' => ['thomas_more_ice_cream/data_charts'],
         'drupalSettings' => [
-          'chart_data' => [
+          'chart_smaken' =>
             $smaakData
-          ],
+          ,
         ],
       ],
     ];
 
     $chart['toppings'] = [
-      '#markup' => new FormattableMarkup('<div id="chart" style="width: 900px; height: 500px;">Chart will be displayed here.</div>', []),
+      '#markup' => new FormattableMarkup('<div id="toppings" style="width: 900px; height: 500px;">Topping chart.</div>', []),
       '#attached' => [
-        'library' => ['thomas_more_social_media/ice_cream'],
+        'library' => ['thomas_more_ice_cream/data_charts'],
         'drupalSettings' => [
-          'chart_data' => [
-          ]
+          'chart_toppings' => [],
+
         ],
       ],
     ];
+    return $chart;
   }
+
 
 }

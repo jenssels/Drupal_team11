@@ -46,7 +46,9 @@ class DatabaseManager {
   }
 
   public function getAllSmaken(){
-    return $this->database->select('thomas_more_ice_cream_smaak')->execute();
+    $query = $this->database->select('thomas_more_ice_cream_smaak', 's');;
+    $query->addField('s', 'smaak');
+    return $query->execute()->fetchCol();
   }
 
   public function getCountSmaak($smaak){
@@ -74,7 +76,9 @@ class DatabaseManager {
   }
 
   public function getAllToppings(){
-    return $this->database->select('thomas_more_ice_cream_topping')->execute();
+    $query = $this->database->select('thomas_more_ice_cream_topping', 't');;
+    $query->addField('t', 'topping');
+    return $query->execute()->fetchCol();
   }
 
   public function getToppingKeuze($topping){

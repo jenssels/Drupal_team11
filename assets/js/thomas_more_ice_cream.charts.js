@@ -4,11 +4,9 @@
     google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {
-
-      console.log(drupalSettings.smaken);
-      var data = google.visualization.arrayToDataTable([
-
-      ]);
+      console.log(drupalSettings.chart_smaken);
+      var data = google.visualization.arrayToDataTable(drupalSettings.chart_smaken
+      );
 
       var options = {
         title: 'Smaken ijsjes',
