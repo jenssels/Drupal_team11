@@ -26,8 +26,8 @@ class IceCreamForm extends FormBase {
       '#type' => 'radios',
       '#title' => 'Select Ice Cream or Waffle',
       '#options' => array(
-        'Ice Cream',
-        'Waffle',
+        'icecream' => 'Ice Cream',
+        'waffle' => 'Waffle',
       )
     );
 
@@ -45,8 +45,9 @@ class IceCreamForm extends FormBase {
 
     $form['topping'] = [
       '#type' => 'checkboxes',
+      '#title' => 'Select toppings',
       '#options' => [
-        'whippedCream' => 'Whipped Cream',
+        'whippedcream' => 'Whipped Cream',
         'chocolatesprinkle' => 'Chocolate Sprinkles',
         'strawberries' => 'Strawberries',
       ]
@@ -62,10 +63,15 @@ class IceCreamForm extends FormBase {
   }
 
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $this->databaseManager->addSmaak($form_state->get('smaak'));
-    $this->databaseManager->addTopping($form_state->get('topping'));
+    if ($form_state->getValue('choice')=='icecream'){
+      $this->databaseManager->addSmaakKeuze($form_state->getValue('smaak'));
+    };
 
-    drupal_set_message('Test');
+    if ($form_state->getValue('choice')=='waffle'){
+      $this->databaseManager->addToppingKeuze($form_state->getValue('topping'));
+    };
+
+    drupal_set_message('Smaak of Topping doorgegeven');
   }
 
 }
