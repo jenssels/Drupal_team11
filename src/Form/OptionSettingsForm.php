@@ -41,6 +41,7 @@ class OptionSettingsForm extends FormBase {
         if ($smaakTeller != count($smaken)) {
           $smakenString .= ",\n";
         }
+
       }
     }
 
@@ -54,6 +55,7 @@ class OptionSettingsForm extends FormBase {
         if ($toppingTeller != count($smaken)) {
           $toppingsString .= ".\n";
         }
+
       }
     }
 
