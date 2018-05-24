@@ -5,19 +5,19 @@ namespace Drupal\thomas_more_ice_cream\Plugin\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\State\StateInterface;
-use Drupal\thomas_more_social_media\ClickManager;
+use Drupal\thomas_more_ice_cream\ClickManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Defines a social menu block.
  *
  * @Block(
- *  id = "thomas_more_social_media_block",
- *  admin_label = @Translation("Social media"),
+ *  id = "thomas_more_ice_cream_block",
+ *  admin_label = @Translation("Ice cream"),
  * )
  */
 
-class IceCreamBlock {
+class IceCreamBlock  extends BlockBase implements ContainerFactoryPluginInterface {
   protected $clickManager;
 
   protected $state;
@@ -35,7 +35,7 @@ class IceCreamBlock {
       $plugin_id,
       $plugin_definition,
       $container->get('state'),
-      $container->get('thomas_more_social_media.click_manager')
+      $container->get('thomas_more_ice_cream.click_manager')
     );
   }
 
@@ -45,18 +45,13 @@ class IceCreamBlock {
   public function build() {
     return [
       '#theme' => 'social-media',
-      '#attached' => ['library' => ['thomas_more_social_media/social_media']],
-      '#facebook_url' => $this->state->get('thomas_more_social_media.facebook_url'),
-      '#facebook_count' => $this->clickManager->getClicks('facebook'),
-      '#google_plus_url' => $this->state->get('thomas_more_social_media.google_plus_url'),
-      '#google_plus_count' => $this->clickManager->getClicks('google_plus'),
-      '#twitter_url' => $this->state->get('thomas_more_social_media.twitter_url'),
-      '#twitter_count' => $this->clickManager->getClicks('twitter'),
-      '#linkedin_url' => $this->state->get('thomas_more_social_media.linkedin_url'),
-      '#linkedin_count' => $this->clickManager->getClicks('linkedin'),
-      '#foursquare_url' => $this->state->get('thomas_more_social_media.foursquare_url'),
-      '#foursquare_count' => $this->clickManager->getClicks('foursquare'),
-
+      '#attached' => ['library' => ['thomas_more_ice_cream/ice_cream']],
+      '#ice_cream_tastes' => $this->state->get('thomas_more_ice_cream.ice_cream_tastes'),
+      '#ice_cream_count' => $this->clickManager->getClicks('ice_cream'),
+      '#waffle_toppings' => $this->state->get('thomas_more_ice_cream.waffle_toppings'),
+      '#waffle_count' => $this->clickManager->getClicks('waffle'),
     ];
   }
+
+
 }

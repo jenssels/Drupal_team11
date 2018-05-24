@@ -3,7 +3,7 @@
 namespace Drupal\thomas_more_ice_cream\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\thomas_more_social_media\ClickManager;
+use Drupal\thomas_more_ice_cream\ClickManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,14 +18,12 @@ class AjaxController extends ControllerBase {
 
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('thomas_more_social_media.click_manager')
+      $container->get('thomas_more_ice_cream.click_manager')
     );
   }
 
   public function counter(Request $request) {
-    if (!$this->currentUser()->hasPermission('skip tracking clicks')) {
-      $this->clickManager->addClick($request->get('network'));
-    }
+      $this->clickManager->addClick($request->get('order'));
 
     return new Response('Ok');
   }
