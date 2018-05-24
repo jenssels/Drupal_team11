@@ -1,7 +1,14 @@
 thomas_more_ice_cream.admin.settings:
   path: '/admin/config/user-interface/thomas-more-ice-cream/settings'
   defaults:
-    _form: 'Drupal\thomas_more_ice_cream\Form\SettingsForm'
+    _form: 'Drupal\thomas_more_ice_cream\Form\ThresholdForm'
+  requirements:
+    _permission: 'access administration pages'
+
+thomas_more_ice_cream.admin.options:
+  path: '/admin/config/user-interface/thomas-more-ice-cream/option-settings'
+  defaults:
+    _form: 'Drupal\thomas_more_ice_cream\Form\OptionSettingsForm'
   requirements:
     _permission: 'access administration pages'
 

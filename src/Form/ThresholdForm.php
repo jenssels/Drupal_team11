@@ -7,7 +7,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\State\StateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class SettingsForm extends FormBase {
+class ThresholdForm extends FormBase {
 
   protected $state;
 
