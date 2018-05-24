@@ -76,7 +76,7 @@ class IceCreamForm extends FormBase {
       else {
         drupal_set_message('Threshold Ice Cream not yet reached!');
       }
-    };
+    }
 
     if ($form_state->getValue('choice') == 'waffle') {
       $checktopping = $this->databaseManager->addToppingKeuze($form_state->getValue('topping'));
@@ -86,7 +86,7 @@ class IceCreamForm extends FormBase {
       else {
         drupal_set_message('Threshold Waffles not yet reached!');
       }
-    };
+    }
 
     drupal_set_message('Smaak of Topping doorgegeven');
   }

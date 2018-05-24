@@ -16,17 +16,17 @@
 
       chart.draw(data, options);
 
-      var data = google.visualization.arrayToDataTable(drupalSettings.chart_toppings
+      var data2 = google.visualization.arrayToDataTable(drupalSettings.chart_toppings
       );
 
-      var options = {
+      var options2 = {
         title: 'Toppings wafels',
         is3D: true
       };
 
-      var chart = new google.visualization.PieChart(document.getElementById('wafel'));
+      var chart2 = new google.visualization.PieChart(document.getElementById('wafel'));
 
-      chart.draw(data, options);
+      chart2.draw(data2, options2);
     }
   });
 
