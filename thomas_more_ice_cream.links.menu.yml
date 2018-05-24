@@ -2,15 +2,9 @@ thomas_more_ice_cream.settings:
   title: 'Ice cream & waffle thresholds'
   parent: system.admin_config_ui
   description: 'Manage the settings of the Ice Cream module'
-  route_name: thomas_more_ice_cream.settings
-
-thomas_more_ice_cream.admin.settings:
-  title: 'Ice cream tastes & waffle toppings'
-  parent: system.admin_config_ui
-  description: 'Configure ice cream tastes & waffle toppings.'
   route_name: thomas_more_ice_cream.admin.settings
 
-thomas_more_ice_cream.admin.charts:
+thomas_more_ice_cream.charts:
   title: 'Ice cream tastes & waffle toppings charts'
   parent: system.admin_config_ui
   description: 'Charts of ordered ice cream tastes & waffle toppings.'

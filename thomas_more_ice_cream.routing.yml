@@ -12,7 +12,7 @@ thomas_more_ice_cream.user.register_order:
   requirements:
     _permission: 'register order'
 
-thomas_more_ice_cream.charts:
+thomas_more_ice_cream.admin.charts:
   path: 'admin/thomas-more-ice-cream/charts'
   defaults:
     _controller: 'Drupal\thomas_more_ice_cream\Controller\ChartsController::buildCharts'
