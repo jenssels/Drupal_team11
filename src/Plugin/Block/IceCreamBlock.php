@@ -12,7 +12,6 @@ use Drupal\Core\Block\BlockBase;
  *  admin_label = @Translation("Ice cream"),
  * )
  */
-
 class IceCreamBlock extends BlockBase {
 
   /**
@@ -20,7 +19,8 @@ class IceCreamBlock extends BlockBase {
    */
   public function build() {
 
-    $form = \Drupal::formBuilder()->getForm('Drupal\thomas_more_ice_cream\Form\IceCreamForm');
+    $form = \Drupal::formBuilder()
+      ->getForm('Drupal\thomas_more_ice_cream\Form\IceCreamForm');
 
     return $form;
   }

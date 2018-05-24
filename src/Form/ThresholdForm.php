@@ -25,17 +25,17 @@ class ThresholdForm extends FormBase {
     return 'thomas_more_ice_cream_settings_form';
   }
 
-  public function buildForm(array $form, FormStateInterface $form_state){
+  public function buildForm(array $form, FormStateInterface $form_state) {
     $form['ijsjes_threshold'] = [
       '#type' => 'number',
       '#title' => 'Threshold voor de ijsjes.',
-      '#default_value' => $this->state->get('thomas_more_ice_cream.ijsjes_threshold')
+      '#default_value' => $this->state->get('thomas_more_ice_cream.ijsjes_threshold'),
     ];
 
     $form['wafels_threshold'] = [
       '#type' => 'number',
       '#title' => 'Threshold voor de wafels.',
-      '#default_value' => $this->state->get('thomas_more_ice_cream.wafels_threshold')
+      '#default_value' => $this->state->get('thomas_more_ice_cream.wafels_threshold'),
     ];
 
     $form['submit'] = [

@@ -1,7 +1,7 @@
 <?php
 
 
-function thomas_more_ice_cream_schema(){
+function thomas_more_ice_cream_schema() {
   $schema['thomas_more_ice_cream_smaakKeuze'] = [
     'fields' => [
       'id' => [
@@ -18,7 +18,7 @@ function thomas_more_ice_cream_schema(){
       'time_clicked' => [
         'type' => 'int',
         'not null' => TRUE,
-        'default' => '0'
+        'default' => '0',
       ],
     ],
     'primary key' => [
@@ -61,7 +61,7 @@ function thomas_more_ice_cream_schema(){
       'time_clicked' => [
         'type' => 'int',
         'not null' => TRUE,
-        'default' => '0'
+        'default' => '0',
       ],
     ],
     'primary key' => [
@@ -93,8 +93,16 @@ function thomas_more_ice_cream_schema(){
 
 function thomas_more_ice_cream_update_8003() {
   $table = thomas_more_ice_cream_schema();
-  \Drupal::database()->schema()->createTable('thomas_more_ice_cream_smaakKeuze', $table['thomas_more_ice_cream_smaakKeuze']);
-  \Drupal::database()->schema()->createTable('thomas_more_ice_cream_smaak', $table['thomas_more_ice_cream_smaak']);
-  \Drupal::database()->schema()->createTable('thomas_more_ice_cream_toppingKeuze', $table['thomas_more_ice_cream_toppingKeuze']);
-  \Drupal::database()->schema()->createTable('thomas_more_ice_cream_topping', $table['thomas_more_ice_cream_topping']);
+  \Drupal::database()
+    ->schema()
+    ->createTable('thomas_more_ice_cream_smaakKeuze', $table['thomas_more_ice_cream_smaakKeuze']);
+  \Drupal::database()
+    ->schema()
+    ->createTable('thomas_more_ice_cream_smaak', $table['thomas_more_ice_cream_smaak']);
+  \Drupal::database()
+    ->schema()
+    ->createTable('thomas_more_ice_cream_toppingKeuze', $table['thomas_more_ice_cream_toppingKeuze']);
+  \Drupal::database()
+    ->schema()
+    ->createTable('thomas_more_ice_cream_topping', $table['thomas_more_ice_cream_topping']);
 }

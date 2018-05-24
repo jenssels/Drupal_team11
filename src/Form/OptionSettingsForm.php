@@ -25,33 +25,33 @@ class OptionSettingsForm extends FormBase {
     return 'thomas_more_ice_cream_OptionsSettings_form';
   }
 
-  public function buildForm(array $form, FormStateInterface $form_state){
+  public function buildForm(array $form, FormStateInterface $form_state) {
     $smaken = $this->databaseManager->getAllSmaken();
     $smakenString = "";
     $toppings = $this->databaseManager->getAllToppings();
     $toppingsString = "";
 
     $smaakTeller = 0;
-    if($smaken != null){
-      foreach($smaken as $smaak){
+    if ($smaken != NULL) {
+      foreach ($smaken as $smaak) {
 
         $smaakTeller++;
         $smakenString .= $smaak;
 
-        if($smaakTeller != count($smaken)){
+        if ($smaakTeller != count($smaken)) {
           $smakenString .= ",\n";
         }
       }
     }
 
     $toppingTeller = 0;
-    if($toppings != null){
-      foreach($toppings as $topping){
+    if ($toppings != NULL) {
+      foreach ($toppings as $topping) {
 
         $toppingTeller++;
         $toppingsString .= $topping;
 
-        if($toppingTeller != count($smaken)){
+        if ($toppingTeller != count($smaken)) {
           $toppingsString .= ".\n";
         }
       }
@@ -60,12 +60,12 @@ class OptionSettingsForm extends FormBase {
     $form['smaken'] = [
       '#type' => 'textarea',
       '#title' => 'Lijst van alle smaken',
-      '#default_value' => $smakenString
+      '#default_value' => $smakenString,
     ];
     $form['toppings'] = [
       '#type' => 'textarea',
       '#title' => 'Lijst van alle toppings',
-      '#default_value' => $toppingsString
+      '#default_value' => $toppingsString,
     ];
     $form['submit'] = [
       '#type' => 'submit',
@@ -86,25 +86,25 @@ class OptionSettingsForm extends FormBase {
 
     $smakenOud = $this->databaseManager->getAllSmaken();
     $toppingsOud = $this->databaseManager->getAllToppings();
-    if($smakenOud != null){
-      foreach($smakenOud as $smaak){
+    if ($smakenOud != NULL) {
+      foreach ($smakenOud as $smaak) {
         $this->databaseManager->deleteSmaak($smaak);
       }
     }
-    if($toppingsOud != null){
-      foreach($toppingsOud as $topping){
+    if ($toppingsOud != NULL) {
+      foreach ($toppingsOud as $topping) {
         $this->databaseManager->deleteTopping($topping);
       }
     }
 
-    if($smakenNieuw != null){
-      foreach($smakenNieuw as $smaak){
+    if ($smakenNieuw != NULL) {
+      foreach ($smakenNieuw as $smaak) {
         $smaak = ucfirst($smaak);
         $this->databaseManager->addSmaak($smaak);
       }
     }
-    if($toppingsNieuw != null){
-      foreach ($toppingsNieuw as $topping){
+    if ($toppingsNieuw != NULL) {
+      foreach ($toppingsNieuw as $topping) {
         $topping = ucfirst($topping);
         $this->databaseManager->addTopping($topping);
       }
