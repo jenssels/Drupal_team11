@@ -31,26 +31,26 @@ class IceCreamForm extends FormBase {
       )
     );
 
+    $smaakdata = [];
+    foreach($this->databaseManager->getAllSmaken() as $smaak){
+      $smaakdata[$smaak] = $smaak;
+        }
+
     $form['smaak'] = array(
       '#type' => 'radios',
       '#title' => 'Select flavor',
-      '#options' => array(
-        'vanilla' => 'Vanilla',
-        'strawberry' => 'Strawberry',
-        'chocolate' => 'Chocolate',
-        'mokka' => 'Mokka',
-        'banana' => 'Banana',
-      )
+      '#options' => $smaakdata
     );
+
+    $toppingdata = [];
+    foreach($this->databaseManager->getAllToppings() as $topping){
+      $toppingdata[$topping] = $topping;
+    }
 
     $form['topping'] = [
       '#type' => 'checkboxes',
       '#title' => 'Select toppings',
-      '#options' => [
-        'whippedcream' => 'Whipped Cream',
-        'chocolatesprinkle' => 'Chocolate Sprinkles',
-        'strawberries' => 'Strawberries',
-      ]
+      '#options' => $toppingdata
     ];
 
     $form['submit'] = [
