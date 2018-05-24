@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\thomas_more_social_media\Plugin\Block;
+namespace Drupal\thomas_more_ice_cream\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
