@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function thomas_more_ice_cream_theme() {
+  return [
+    'ice-cream' => [
+      'variables' => [
+        'ice_cream_tastes' => NULL,
+        'waffle_toppings' => NULL,
+        'ice_cream_count' => 0,
+        'waffle_count' => 0,
+      ],
+    ],
+  ];
+}
